@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Mont-Bold.ttf",
+      "sha1": "c86f6208c18bc951b5f3c84e5915c342347d5fb9"
+    },
+    {
+      "path": "src/assets/fonts/Mont-Light.ttf",
+      "sha1": "e74930201e96dc4aa71406575fbf816371efece7"
+    },
+    {
+      "path": "src/assets/fonts/SfProRounded-Bold.otf",
+      "sha1": "1a2fe2e40928ae7739e814f6fc240db77739edec"
+    }
+  ]
+}

@@ -14,6 +14,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-reactNativeCli-reactNativeCliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-reactNativeCli-reactNativeCliTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FE604D9FC2D548C79DEB1906 /* Mont-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4256A88179584DA89C8FE32F /* Mont-Bold.ttf */; };
+		B90D3A229A6E4AFCAD2CEE67 /* Mont-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43CCB18C596C433896F5F55C /* Mont-Light.ttf */; };
+		B1EFA490F6DB4D9DA64579A4 /* SfProRounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2AE301CC3BEC49359CD859AF /* SfProRounded-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = reactNativeCli/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-reactNativeCli-reactNativeCliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeCli-reactNativeCliTests.release.xcconfig"; path = "Target Support Files/Pods-reactNativeCli-reactNativeCliTests/Pods-reactNativeCli-reactNativeCliTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		4256A88179584DA89C8FE32F /* Mont-Bold.ttf */ = {isa = PBXFileReference; name = "Mont-Bold.ttf"; path = "../src/assets/fonts/Mont-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		43CCB18C596C433896F5F55C /* Mont-Light.ttf */ = {isa = PBXFileReference; name = "Mont-Light.ttf"; path = "../src/assets/fonts/Mont-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2AE301CC3BEC49359CD859AF /* SfProRounded-Bold.otf */ = {isa = PBXFileReference; name = "SfProRounded-Bold.otf"; path = "../src/assets/fonts/SfProRounded-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				D910652CFD804DE3882FF0FC /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +156,17 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		D910652CFD804DE3882FF0FC /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				4256A88179584DA89C8FE32F /* Mont-Bold.ttf */,
+				43CCB18C596C433896F5F55C /* Mont-Light.ttf */,
+				2AE301CC3BEC49359CD859AF /* SfProRounded-Bold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +263,9 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				FE604D9FC2D548C79DEB1906 /* Mont-Bold.ttf in Resources */,
+				B90D3A229A6E4AFCAD2CEE67 /* Mont-Light.ttf in Resources */,
+				B1EFA490F6DB4D9DA64579A4 /* SfProRounded-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
