@@ -6,6 +6,7 @@ const colorsApp = {
   grey500: 'rgb(52, 52, 52)',
   lightLightGrey: 'rgb(239,239,239)',
   white100: '#FBFBFB',
+  grey: '#f2f2f5',
 };
 
 export default colorsApp;

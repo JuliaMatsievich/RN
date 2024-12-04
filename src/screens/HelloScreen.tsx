@@ -1,28 +1,25 @@
-import Dot from 'components/helloSlider/Dot.tsx';
-import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Dot from 'components/helloSlider/Dot.tsx';
+import { useAppTheme } from 'hooks/useAppTheme.tsx';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FlatList,
-  PixelRatio,
   SafeAreaView,
   StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
+import Animated, {
+  Easing,
+  SequencedTransition,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
 import ButtonCustom from '../components/customUI/ButtonCustom.tsx';
 import HelloSlide from '../components/helloSlider/HelloSlide.tsx';
 import { helloSlidesData } from '../data/helloSlidesData.ts';
-import { ThemeApp } from '../types/theme.types.ts';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  Easing,
-  withDelay,
-  SequencedTransition,
-} from 'react-native-reanimated';
 
 const HelloScreen = () => {
   const { theme } = useAppTheme();
@@ -54,7 +51,7 @@ const HelloScreen = () => {
       setCurrentSlide(currentSlide + 1);
       flatListRef?.current?.scrollToIndex({
         index: currentSlide + 1,
-        animated: false,
+        animated: true,
       });
     } else {
       navigation.navigate('Authorization');
@@ -63,7 +60,7 @@ const HelloScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <FlatList
           data={helloSlidesData}
           ref={flatListRef}

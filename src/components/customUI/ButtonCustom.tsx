@@ -1,23 +1,29 @@
+import { Fonts } from '/config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import {
-  PixelRatio,
   Pressable,
   PressableProps,
+  StyleProp,
   StyleSheet,
   Text,
+  ViewStyle,
 } from 'react-native';
 import { ThemeApp } from 'types/theme.types.ts';
-import { Fonts } from '../../config/fonts.ts';
 
 interface ButtonCustomProps extends PressableProps {
   text: string;
   onPress?: () => void;
+  otherStyles?: StyleProp<ViewStyle>;
 }
 
-const ButtonCustom = ({ text, onPress }: ButtonCustomProps) => {
+const ButtonCustom = ({ text, onPress, ...otherProps }: ButtonCustomProps) => {
   const { theme } = useAppTheme();
   return (
-    <Pressable onPress={onPress} style={styles(theme).buttonContainer}>
+    <Pressable
+      onPress={onPress}
+      style={styles(theme).buttonContainer}
+      {...otherProps}
+    >
       <Text style={styles(theme).buttonText}>{text}</Text>
     </Pressable>
   );
@@ -31,13 +37,15 @@ const styles = (theme: ThemeApp) =>
       alignItems: 'center',
       backgroundColor: theme.button.background,
       borderRadius: 16,
-      width: '90%',
+      width: '100%',
       cursor: 'pointer',
     },
     buttonText: {
       color: theme.button.text,
       fontFamily: Fonts.text,
       fontSize: 16,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
 

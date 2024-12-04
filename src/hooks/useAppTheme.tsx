@@ -5,6 +5,7 @@ import { ThemeApp } from 'types/theme.types.ts';
 
 interface useThemeProps {
   theme: ThemeApp;
+  themeName: string;
   // setTheme: Dispatch<SetStateAction<ThemeApp>>;
   toggleTheme: () => Promise<void>;
 }
@@ -13,15 +14,15 @@ export const useAppTheme = (): useThemeProps => {
   const { themeName, toggleTheme } = useContext(ThemeContext)!;
 
   if (themeName === 'dark') {
-    console.log('themeDarkHook', themeName);
     return {
+      themeName,
       theme: darkTheme,
       toggleTheme,
     };
   }
-  console.log('themeLightHook', themeName);
 
   return {
+    themeName,
     theme: lightTheme,
     toggleTheme,
   };
