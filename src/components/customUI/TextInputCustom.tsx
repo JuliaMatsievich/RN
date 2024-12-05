@@ -1,13 +1,13 @@
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
-import React, { FC } from 'react';
+import { FC, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { MaskedTextInput, MaskedTextInputProps } from 'react-native-mask-text';
 import { ThemeApp } from 'types/theme.types.ts';
 
-interface IThemedTextInputProps extends MaskedTextInputProps {}
+interface TextInputProps extends MaskedTextInputProps {}
 
-export const TextInputCustom: FC<IThemedTextInputProps> = ({
+export const TextInputCustom: FC<TextInputProps> = ({
   placeholder,
   value,
   onChangeText,
@@ -16,9 +16,14 @@ export const TextInputCustom: FC<IThemedTextInputProps> = ({
   ...otherProps
 }) => {
   const { theme } = useAppTheme();
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <MaskedTextInput
-      style={[styles(theme).input, style]}
+      style={
+        isFocused
+          ? [styles(theme).input, styles(theme).inputFocus, style]
+          : [styles(theme).input, style]
+      }
       placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
@@ -26,6 +31,8 @@ export const TextInputCustom: FC<IThemedTextInputProps> = ({
       placeholderTextColor={theme.input.placeholder}
       selectionColor={theme.input.selection}
       secureTextEntry={secureTextEntry}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       {...otherProps}
     />
   );
@@ -46,7 +53,10 @@ const styles = (theme: ThemeApp) =>
       borderStyle: 'solid',
       marginBottom: 20,
       fontSize: 16,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       // textAlignVertical: 'top',
+    },
+    inputFocus: {
+      borderColor: theme.input.borderFocus,
     },
   });

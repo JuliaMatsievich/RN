@@ -1,4 +1,5 @@
 export const Fonts = {
-  title: 'Mont-Bold',
-  text: 'Mont-Light',
+  bold: 'Mont-Bold',
+  light: 'Mont-Light',
+  regular: 'Mont-Regular',
 };

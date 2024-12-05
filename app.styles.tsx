@@ -6,7 +6,7 @@ export const commonStyles = (theme: ThemeApp) =>
   StyleSheet.create({
     title: {
       fontSize: 30,
-      fontFamily: Fonts.title,
+      fontFamily: Fonts.bold,
       color: theme.title,
     },
   });

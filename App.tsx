@@ -4,6 +4,7 @@ import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import React from 'react';
 import AuthorizationScreen from 'screens/AuthorizationScreen.tsx';
 import CodeScreen from 'screens/CodeScreen.tsx';
+import HelloScreen from 'screens/HelloScreen.tsx';
 import HomeTabs from 'tabs/HomeTabs.tsx';
 
 const Stack = createNativeStackNavigator();
@@ -25,11 +26,11 @@ function App(): React.JSX.Element {
           navigationBarColor: theme.navigationBarColor,
         }}
       >
-        {/*<Stack.Screen*/}
-        {/*  name="Hello"*/}
-        {/*  component={HelloScreen}*/}
-        {/*  options={{ headerShown: false }}*/}
-        {/*/>*/}
+        <Stack.Screen
+          name="Hello"
+          component={HelloScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Authorization"
           component={AuthorizationScreen}
@@ -42,7 +43,20 @@ function App(): React.JSX.Element {
             },
           }}
         />
-        <Stack.Screen name="Code" component={CodeScreen} />
+        <Stack.Screen
+          name="Code"
+          component={CodeScreen}
+          options={{
+            headerShown: true,
+            headerShadowVisible: false,
+            headerTintColor: theme.text,
+            headerStyle: {
+              backgroundColor: theme.background,
+            },
+            headerBackButtonDisplayMode: 'generic',
+            headerTitle: '',
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={HomeTabs}

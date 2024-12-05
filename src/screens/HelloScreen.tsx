@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonContainer: {
+    marginHorizontal: 20,
     marginBottom: 20,
     alignItems: 'center',
   },

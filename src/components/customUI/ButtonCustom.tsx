@@ -14,14 +14,27 @@ interface ButtonCustomProps extends PressableProps {
   text: string;
   onPress?: () => void;
   otherStyles?: StyleProp<ViewStyle>;
+  isDisabled?: boolean;
 }
 
-const ButtonCustom = ({ text, onPress, ...otherProps }: ButtonCustomProps) => {
+const ButtonCustom = ({
+  text,
+  onPress,
+  isDisabled,
+  ...otherProps
+}: ButtonCustomProps) => {
   const { theme } = useAppTheme();
   return (
     <Pressable
       onPress={onPress}
-      style={styles(theme).buttonContainer}
+      style={
+        isDisabled
+          ? [
+              styles(theme).buttonContainer,
+              styles(theme).buttonContainerDisabled,
+            ]
+          : styles(theme).buttonContainer
+      }
       {...otherProps}
     >
       <Text style={styles(theme).buttonText}>{text}</Text>
@@ -40,9 +53,12 @@ const styles = (theme: ThemeApp) =>
       width: '100%',
       cursor: 'pointer',
     },
+    buttonContainerDisabled: {
+      opacity: 0.35,
+    },
     buttonText: {
       color: theme.button.text,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       fontSize: 16,
       justifyContent: 'center',
       alignItems: 'center',

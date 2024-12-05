@@ -29,6 +29,7 @@ const AuthorizationScreen = () => {
     navigation.navigate('Code');
   };
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
   const keyboard = useAnimatedKeyboard();
 
   const animatedStyles = useAnimatedStyle(() => ({
@@ -36,10 +37,16 @@ const AuthorizationScreen = () => {
   }));
   const handleChangeText = (value: string) => {
     setPhoneNumber(value);
+    if (value.length >= 13) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
   };
 
   const handleDeleteText = () => {
     setPhoneNumber('');
+    setIsDisabled(false);
   };
 
   return (
@@ -80,14 +87,20 @@ const AuthorizationScreen = () => {
 
         <Animated.View style={[styles(theme).footer, animatedStyles]}>
           <Text style={styles(theme).confedential}>
-            Нажимая “Получить код” вы принимате условия Пользовательского
-            соглашения и Политики кофиденциальности, а также разрешаете
-            обработку своих данных
+            Нажимая &#34;Получить код&#34; вы принимате условия
+            <Text style={styles(theme).span}>
+              {' '}
+              Пользовательского соглашения
+            </Text>{' '}
+            и <Text style={styles(theme).span}>Политики кофиденциальности</Text>
+            , а также разрешаете обработку своих данных
           </Text>
           <View style={styles(theme).button}>
             <ButtonCustom
               text={'Получить код'}
               onPress={() => setToCodeScreen()}
+              disabled={phoneNumber.length < 9}
+              isDisabled={isDisabled}
             />
           </View>
         </Animated.View>
@@ -110,7 +123,7 @@ const styles = (theme: ThemeApp) =>
     },
     subtitle: {
       fontSize: 15,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       color: theme.text,
       marginTop: 12,
       width: '100%',
@@ -120,7 +133,7 @@ const styles = (theme: ThemeApp) =>
     },
     inputLabel: {
       fontSize: 13,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       marginBottom: 7,
     },
     inputContainer: {
@@ -132,7 +145,7 @@ const styles = (theme: ThemeApp) =>
       position: 'absolute',
       top: 17.5,
       left: 16,
-      width: 200,
+      width: 50,
       zIndex: 3,
       flexDirection: 'row',
       alignItems: 'center',
@@ -143,14 +156,14 @@ const styles = (theme: ThemeApp) =>
     },
     code: {
       fontSize: 16,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.regular,
       color: theme.input.text,
     },
     input: {
       paddingHorizontal: 65,
       width: '100%',
       fontSize: 16,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.regular,
       color: theme.input.text,
     },
     inputEndContainer: {
@@ -167,9 +180,12 @@ const styles = (theme: ThemeApp) =>
     },
     confedential: {
       textAlign: 'center',
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       fontSize: 15,
       marginBottom: 25,
+    },
+    span: {
+      fontFamily: Fonts.regular,
     },
     button: {
       alignItems: 'center',

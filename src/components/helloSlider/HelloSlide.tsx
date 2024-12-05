@@ -86,7 +86,7 @@ const HelloSlide = ({
 
     return () => {
       opacityImage.value = 0;
-      translateYText.value = 30;
+      translateYText.value = 20;
     };
   }, [currentSlide, translateY, opacityText, opacityImage, translateYText]);
 
@@ -114,6 +114,7 @@ const styles = (theme: ThemeApp) =>
     },
     imageContainer: {
       width: '80%',
+      height: '52%',
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -121,21 +122,21 @@ const styles = (theme: ThemeApp) =>
       justifyContent: 'flex-start',
       alignItems: 'center',
       marginHorizontal: 20,
-      marginBottom: 40,
+      marginBottom: 60,
     },
     title: {
       fontSize: 30,
       height: 77,
       marginBottom: 20,
       color: theme.title,
-      fontFamily: Fonts.title,
+      fontFamily: Fonts.bold,
       textAlign: 'center',
       verticalAlign: 'bottom',
     },
     text: {
       fontSize: 16,
       color: theme.text,
-      fontFamily: Fonts.text,
+      fontFamily: Fonts.light,
       textAlign: 'center',
       lineHeight: 24,
     },
