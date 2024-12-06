@@ -1,20 +1,19 @@
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
-import { FC, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react';
+import { StyleSheet, TextInput } from 'react-native';
 import { MaskedTextInput, MaskedTextInputProps } from 'react-native-mask-text';
 import { ThemeApp } from 'types/theme.types.ts';
 
-interface TextInputProps extends MaskedTextInputProps {}
+// interface TextInputProps extends MaskedTextInputProps {}
 
-export const TextInputCustom: FC<TextInputProps> = ({
-  placeholder,
-  value,
-  onChangeText,
-  secureTextEntry,
-  style,
-  ...otherProps
-}) => {
+const InputFieldComponent: ForwardRefRenderFunction<
+  TextInput,
+  MaskedTextInputProps
+> = (
+  { placeholder, value, onChangeText, secureTextEntry, style, ...rest },
+  ref,
+) => {
   const { theme } = useAppTheme();
   const [isFocused, setIsFocused] = useState(false);
   return (
@@ -33,10 +32,44 @@ export const TextInputCustom: FC<TextInputProps> = ({
       secureTextEntry={secureTextEntry}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      {...otherProps}
+      ref={ref}
+      {...rest}
     />
   );
 };
+//
+// export const TextInputCustom = ({
+//   placeholder,
+//   value,
+//   onChangeText,
+//   secureTextEntry,
+//   style,
+//   ...otherProps
+// }: TextInputProps) => {
+//   const { theme } = useAppTheme();
+//   const [isFocused, setIsFocused] = useState(false);
+//   return (
+//     <MaskedTextInput
+//       style={
+//         isFocused
+//           ? [styles(theme).input, styles(theme).inputFocus, style]
+//           : [styles(theme).input, style]
+//       }
+//       placeholder={placeholder}
+//       value={value}
+//       onChangeText={onChangeText}
+//       cursorColor={theme.input.cursor}
+//       placeholderTextColor={theme.input.placeholder}
+//       selectionColor={theme.input.selection}
+//       secureTextEntry={secureTextEntry}
+//       onFocus={() => setIsFocused(true)}
+//       onBlur={() => setIsFocused(false)}
+//       {...otherProps}
+//     />
+//   );
+// };
+
+export const InputField = forwardRef(InputFieldComponent);
 
 const styles = (theme: ThemeApp) =>
   StyleSheet.create({

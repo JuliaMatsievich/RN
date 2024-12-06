@@ -1,13 +1,14 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TextInputCustom } from 'components/customUI/TextInputCustom.tsx';
+import { InputField } from 'components/customUI/TextInputCustom.tsx';
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
   Text,
+  TextInput,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -29,12 +30,12 @@ const CodeScreen = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [timer, setTimer] = useState(60);
   const [isButtonSend, setIsButtonSend] = useState(false);
-  // const inputRefs = [
-  //   useRef<typeof MaskedTextInput>(null),
-  //   useRef<typeof MaskedTextInput>(null),
-  //   useRef<typeof MaskedTextInput>(null),
-  //   useRef<typeof MaskedTextInput>(null),
-  // ];
+  const inputRefs = [
+    useRef<TextInput>(null),
+    useRef<TextInput>(null),
+    useRef<TextInput>(null),
+    useRef<TextInput>(null),
+  ];
   const keyboard = useAnimatedKeyboard();
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: -keyboard.height.value }],
@@ -47,17 +48,15 @@ const CodeScreen = () => {
       newCode[index] = value;
       setCode(newCode);
 
-      // Переход на следующий инпут
-      // if (value.length === 1 && index < inputRefs.length - 1) {
-      //   console.log('inputref', inputRefs[index].current);
-      //   inputRefs[index + 1].current?.length;
-      // }
+      if (value.length === 1 && index < inputRefs.length - 1) {
+        inputRefs[index + 1].current?.focus();
+      }
     }
 
-    // Переход на предыдущий инпут при удалении
-    // if (value.length === 0 && index > 0) {
-    //   inputRefs[index - 1].current?.name;
-    // }
+    if (value.length === 0 && index > 0) {
+      inputRefs[index - 1].current?.focus();
+    }
+    1;
   };
 
   const handleSendCode = () => {
@@ -76,6 +75,10 @@ const CodeScreen = () => {
     };
   }, [timer, isButtonSend]);
 
+  // const testInput = () => {
+  //   console.log('testInput', inputRef.current);
+  // };
+
   useEffect(() => {
     setIsDisabled(code.some((digit) => digit === ''));
     console.log('code', code);
@@ -92,13 +95,14 @@ const CodeScreen = () => {
           <Text style={styles(theme).subtitle}>Введите код из SMS</Text>
           <View style={styles(theme).form}>
             {Array.from(Array(4).keys()).map((_, index) => (
-              <TextInputCustom
+              <InputField
                 keyboardType="phone-pad"
                 onChangeText={(value) => handleChangeText(value, index)}
                 value={code[index]}
                 mask={'9'}
                 style={styles(theme).input}
                 key={index}
+                ref={inputRefs[index]}
               />
             ))}
           </View>
@@ -117,7 +121,7 @@ const CodeScreen = () => {
             ]}
             text={'Отправить код снова'}
             onPress={() => handleSendCode()}
-            disabled={isDisabled}
+            disabled={code.some((digit) => digit === '') && isDisabled}
             isDisabled={isDisabled}
           />
         </View>
