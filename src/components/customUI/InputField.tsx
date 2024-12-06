@@ -37,37 +37,6 @@ const InputFieldComponent: ForwardRefRenderFunction<
     />
   );
 };
-//
-// export const TextInputCustom = ({
-//   placeholder,
-//   value,
-//   onChangeText,
-//   secureTextEntry,
-//   style,
-//   ...otherProps
-// }: TextInputProps) => {
-//   const { theme } = useAppTheme();
-//   const [isFocused, setIsFocused] = useState(false);
-//   return (
-//     <MaskedTextInput
-//       style={
-//         isFocused
-//           ? [styles(theme).input, styles(theme).inputFocus, style]
-//           : [styles(theme).input, style]
-//       }
-//       placeholder={placeholder}
-//       value={value}
-//       onChangeText={onChangeText}
-//       cursorColor={theme.input.cursor}
-//       placeholderTextColor={theme.input.placeholder}
-//       selectionColor={theme.input.selection}
-//       secureTextEntry={secureTextEntry}
-//       onFocus={() => setIsFocused(true)}
-//       onBlur={() => setIsFocused(false)}
-//       {...otherProps}
-//     />
-//   );
-// };
 
 export const InputField = forwardRef(InputFieldComponent);
 

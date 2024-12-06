@@ -1,6 +1,6 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { InputField } from 'components/customUI/TextInputCustom.tsx';
+import { InputField } from 'components/customUI/InputField.tsx';
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import React, { useEffect, useRef, useState } from 'react';
@@ -65,7 +65,7 @@ const CodeScreen = () => {
   };
 
   useEffect(() => {
-    const intervalId = setInterval(() => setTimer((timer) => timer - 1), 1000);
+    const intervalId = setInterval(() => setTimer((time) => time - 1), 1000);
     if (timer === 0) {
       setIsButtonSend(true);
     }
@@ -74,10 +74,6 @@ const CodeScreen = () => {
       clearInterval(intervalId);
     };
   }, [timer, isButtonSend]);
-
-  // const testInput = () => {
-  //   console.log('testInput', inputRef.current);
-  // };
 
   useEffect(() => {
     setIsDisabled(code.some((digit) => digit === ''));

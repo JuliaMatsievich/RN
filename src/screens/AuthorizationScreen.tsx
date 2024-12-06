@@ -2,7 +2,7 @@ import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import CrossSvg from 'assets/icons/Cross.svg';
 import FlagSvg from 'assets/icons/Flags.svg';
-import { TextInputCustom } from 'components/customUI/TextInputCustom.tsx';
+import { InputField } from 'components/customUI/InputField.tsx';
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import React, { useState } from 'react';
@@ -68,7 +68,7 @@ const AuthorizationScreen = () => {
                 <Text style={styles(theme).code}>+7</Text>
               </View>
 
-              <TextInputCustom
+              <InputField
                 keyboardType="phone-pad"
                 onChangeText={(value) => handleChangeText(value)}
                 value={phoneNumber}
