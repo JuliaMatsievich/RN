@@ -26,7 +26,7 @@ const CodeScreen = () => {
   const setToHomeScreen = () => {
     navigation.navigate('Home');
   };
-  const [code, setCode] = useState<string[]>([]);
+  const [code, setCode] = useState<string[]>(['', '', '', '']);
   const [isDisabled, setIsDisabled] = useState(true);
   const [timer, setTimer] = useState(60);
   const [isButtonSend, setIsButtonSend] = useState(false);
@@ -43,20 +43,16 @@ const CodeScreen = () => {
 
   const handleChangeText = (value: string, index: number) => {
     const newCode = [...code];
+    newCode[index] = value;
+    setCode(newCode);
 
-    if (/^[0-9]*$/.test(value)) {
-      newCode[index] = value;
-      setCode(newCode);
-
-      if (value.length === 1 && index < inputRefs.length - 1) {
-        inputRefs[index + 1].current?.focus();
-      }
+    if (value.length === 1 && index < inputRefs.length - 1) {
+      inputRefs[index + 1].current?.focus();
     }
 
     if (value.length === 0 && index > 0) {
       inputRefs[index - 1].current?.focus();
     }
-    1;
   };
 
   const handleSendCode = () => {
@@ -76,7 +72,11 @@ const CodeScreen = () => {
   }, [timer, isButtonSend]);
 
   useEffect(() => {
-    setIsDisabled(code.some((digit) => digit === ''));
+    if (code.some((digit) => digit === '')) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
     console.log('code', code);
   }, [code]);
 
@@ -117,7 +117,7 @@ const CodeScreen = () => {
             ]}
             text={'Отправить код снова'}
             onPress={() => handleSendCode()}
-            disabled={code.some((digit) => digit === '') && isDisabled}
+            disabled={code.length === 0 || code.some((digit) => digit === '')}
             isDisabled={isDisabled}
           />
         </View>
@@ -127,7 +127,7 @@ const CodeScreen = () => {
             <ButtonCustom
               text={'Продолжить'}
               onPress={() => setToHomeScreen()}
-              disabled={code.length < 4}
+              disabled={code.some((digit) => digit === '')}
               isDisabled={isDisabled}
             />
           </View>

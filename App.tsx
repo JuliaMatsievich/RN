@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import React from 'react';
+import { Pressable, Text } from 'react-native';
 import AuthorizationScreen from 'screens/AuthorizationScreen.tsx';
 import CodeScreen from 'screens/CodeScreen.tsx';
 import HelloScreen from 'screens/HelloScreen.tsx';
@@ -38,6 +39,7 @@ function App(): React.JSX.Element {
             headerShown: true,
             headerShadowVisible: false,
             headerTitle: '',
+            headerBackVisible: false,
             headerStyle: {
               backgroundColor: theme.background,
             },
@@ -46,7 +48,7 @@ function App(): React.JSX.Element {
         <Stack.Screen
           name="Code"
           component={CodeScreen}
-          options={{
+          options={({ navigation }) => ({
             headerShown: true,
             headerShadowVisible: false,
             headerTintColor: theme.text,
@@ -54,8 +56,14 @@ function App(): React.JSX.Element {
               backgroundColor: theme.background,
             },
             headerBackButtonDisplayMode: 'generic',
+            headerBackVisible: true,
             headerTitle: '',
-          }}
+            headerLeft: () => (
+              <Pressable onPress={() => navigation.goBack()}>
+                <Text>Назад</Text>
+              </Pressable>
+            ),
+          })}
         />
         <Stack.Screen
           name="Home"
