@@ -18,6 +18,7 @@ import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import { useAuthStore } from 'store/useAuthStore.ts';
 import { ThemeApp } from 'types/theme.types.ts';
 import { commonStyles } from '../../app.styles.tsx';
 import ButtonCustom from '../components/customUI/ButtonCustom.tsx';
@@ -27,10 +28,13 @@ const AuthorizationScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const setToCodeScreen = () => {
     navigation.navigate('Code');
+    setUserPhone(`+7 ${phoneNumber}`);
   };
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const keyboard = useAnimatedKeyboard();
+
+  const setUserPhone = useAuthStore((state) => state.setUserPhone);
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: -keyboard.height.value }],

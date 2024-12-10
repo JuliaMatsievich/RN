@@ -3,9 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import AuthorizationScreen from 'screens/AuthorizationScreen.tsx';
 import CodeScreen from 'screens/CodeScreen.tsx';
-import HelloScreen from 'screens/HelloScreen.tsx';
 import HomeTabs from 'tabs/HomeTabs.tsx';
 
 const Stack = createNativeStackNavigator();
@@ -27,24 +25,24 @@ function App(): React.JSX.Element {
           navigationBarColor: theme.navigationBarColor,
         }}
       >
-        <Stack.Screen
-          name="Hello"
-          component={HelloScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Authorization"
-          component={AuthorizationScreen}
-          options={{
-            headerShown: true,
-            headerShadowVisible: false,
-            headerTitle: '',
-            headerBackVisible: false,
-            headerStyle: {
-              backgroundColor: theme.background,
-            },
-          }}
-        />
+        {/*<Stack.Screen*/}
+        {/*  name="Hello"*/}
+        {/*  component={HelloScreen}*/}
+        {/*  options={{ headerShown: false }}*/}
+        {/*/>*/}
+        {/*<Stack.Screen*/}
+        {/*  name="Authorization"*/}
+        {/*  component={AuthorizationScreen}*/}
+        {/*  options={{*/}
+        {/*    headerShown: true,*/}
+        {/*    headerShadowVisible: false,*/}
+        {/*    headerTitle: '',*/}
+        {/*    headerBackVisible: false,*/}
+        {/*    headerStyle: {*/}
+        {/*      backgroundColor: theme.background,*/}
+        {/*    },*/}
+        {/*  }}*/}
+        {/*/>*/}
         <Stack.Screen
           name="Code"
           component={CodeScreen}

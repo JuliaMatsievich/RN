@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { InputField } from 'components/customUI/InputField.tsx';
 import { Fonts } from 'config/fonts.ts';
 import { useAppTheme } from 'hooks/useAppTheme.tsx';
+import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Keyboard,
@@ -16,9 +17,11 @@ import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import { useAuthStore } from 'store/useAuthStore.ts';
 import { ThemeApp } from 'types/theme.types.ts';
 import { commonStyles } from '../../app.styles.tsx';
 import ButtonCustom from '../components/customUI/ButtonCustom.tsx';
+// import breathe from 'assets/animations/breathe.json';
 
 const CodeScreen = () => {
   const { theme } = useAppTheme();
@@ -36,6 +39,7 @@ const CodeScreen = () => {
     useRef<TextInput>(null),
     useRef<TextInput>(null),
   ];
+  const userPhone = useAuthStore((state) => state.userPhone);
   const keyboard = useAnimatedKeyboard();
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: -keyboard.height.value }],
@@ -87,7 +91,9 @@ const CodeScreen = () => {
           <Text style={[commonStyles(theme).title, styles(theme).title]}>
             Код подтверждения
           </Text>
-          <Text style={styles(theme).subtitle}>Код отправлен на номер .</Text>
+          <Text style={styles(theme).subtitle}>
+            Код отправлен на номер {userPhone}.
+          </Text>
           <Text style={styles(theme).subtitle}>Введите код из SMS</Text>
           <View style={styles(theme).form}>
             {Array.from(Array(4).keys()).map((_, index) => (
@@ -121,6 +127,12 @@ const CodeScreen = () => {
             isDisabled={isDisabled}
           />
         </View>
+        <LottieView
+          style={styles(theme).breathe}
+          source={require('assets/animations/breathe.json')}
+          autoPlay
+          loop
+        />
 
         <Animated.View style={[styles(theme).footer, animatedStyles]}>
           <View style={styles(theme).button}>
@@ -197,6 +209,12 @@ const styles = (theme: ThemeApp) =>
     button: {
       alignItems: 'center',
       marginBottom: 30,
+    },
+    breathe: {
+      alignSelf: 'center',
+      width: 200,
+      height: 200,
+      textAlign: 'center',
     },
   });
 
